@@ -1,0 +1,89 @@
+{
+    "title": "Reddit Sentiment Analyzer Input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "startUrls": {
+            "title": "Reddit URLs",
+            "type": "array",
+            "description": "List of Reddit post URLs or subreddit URLs to analyze",
+            "editor": "stringList",
+            "prefill": [
+                "https://www.reddit.com/r/AskReddit/hot"
+            ]
+        },
+        "maxPosts": {
+            "title": "Max Posts",
+            "type": "integer",
+            "description": "Maximum posts to scrape per subreddit",
+            "default": 10,
+            "minimum": 1,
+            "maximum": 100
+        },
+        "maxComments": {
+            "title": "Max Comments per Post",
+            "type": "integer",
+            "description": "Maximum comments to extract per post (0 = all)",
+            "default": 50,
+            "minimum": 0
+        },
+        "includeReplies": {
+            "title": "Include Nested Replies",
+            "type": "boolean",
+            "description": "Include nested reply comments",
+            "default": true
+        },
+        "enableSentiment": {
+            "title": "🤖 Enable AI Sentiment Analysis",
+            "type": "boolean",
+            "description": "Use Gemini AI to analyze sentiment, topics, entities, and controversy for each comment",
+            "default": false,
+            "sectionCaption": "AI Analysis Options",
+            "sectionDescription": "Enable AI-powered insights using Gemini 2.5 Flash"
+        },
+        "googleApiKey": {
+            "title": "🔑 Google API Key",
+            "type": "string",
+            "description": "Your Google AI API key for Gemini. Get one free at https://aistudio.google.com/apikey",
+            "editor": "textfield",
+            "isSecret": true
+        },
+        "includeTopics": {
+            "title": "Extract Topics",
+            "type": "boolean",
+            "description": "Extract topic keywords from each comment",
+            "default": true
+        },
+        "includeEntities": {
+            "title": "Extract Entities",
+            "type": "boolean",
+            "description": "Extract mentioned brands, people, and products",
+            "default": true
+        },
+        "includeControversy": {
+            "title": "Controversy Scoring",
+            "type": "boolean",
+            "description": "Score how likely each comment is to spark debate (0-1)",
+            "default": true
+        },
+        "batchSize": {
+            "title": "AI Batch Size",
+            "type": "integer",
+            "description": "Number of comments to analyze per AI API call (higher = faster, more tokens)",
+            "default": 20,
+            "minimum": 5,
+            "maximum": 50
+        },
+        "useProxy": {
+            "title": "🔒 Use Proxy (Recommended)",
+            "type": "boolean",
+            "description": "Use Apify residential proxies to bypass Reddit blocking. Adds ~$0.002-0.005 per request.",
+            "default": true,
+            "sectionCaption": "Proxy Settings",
+            "sectionDescription": "Reddit blocks datacenter IPs. Enable proxy to bypass."
+        }
+    },
+    "required": [
+        "startUrls"
+    ]
+}
